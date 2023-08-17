@@ -1,0 +1,15 @@
+import Notification from "./notification";
+import RecentPlaylist from "./recentPlaylist";
+import Player from "./player";
+
+const Panel = () => {
+  return (
+    <div className="flex flex-col w-3/12  gap-2 items-center bg-gradient-to-t from-black100 to-darkRed">
+      <Notification />
+      <RecentPlaylist />
+      <Player/>
+    </div>
+  );
+};
+
+export default Panel;
