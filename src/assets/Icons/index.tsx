@@ -14,6 +14,7 @@ import PlayIcon from './Play.svg'
 import RandomIcon from './Random.svg'
 import RepeatIcon from './Repeat.svg'
 import BackIcon from './Back.svg'
+import PauseIcon from './Pause.svg'
 
 
 
@@ -34,5 +35,6 @@ export {
     RandomIcon,
     PlayIcon,
     NextIcon,
-    BackIcon
+    BackIcon,
+    PauseIcon
 }
