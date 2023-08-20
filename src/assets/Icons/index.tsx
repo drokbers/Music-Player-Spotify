@@ -15,6 +15,10 @@ import RandomIcon from './Random.svg'
 import RepeatIcon from './Repeat.svg'
 import BackIcon from './Back.svg'
 import PauseIcon from './Pause.svg'
+import VolumeMutedIcon from './volumeMutedIcon.svg'
+import VolumeFullIcon from './volumeFullIcon.svg'
+import VolumeNormalIcon from './volumeNormalIcon.svg'
+import VolumeLowIcon from './volumeLowIcon.svg'
 
 
 
@@ -36,5 +40,10 @@ export {
     PlayIcon,
     NextIcon,
     BackIcon,
-    PauseIcon
+    PauseIcon,
+    VolumeMutedIcon,
+    VolumeFullIcon,
+    VolumeNormalIcon,
+    VolumeLowIcon
+
 }

@@ -6,15 +6,13 @@ import { Background, Micheal } from "@/assets/Images";
 const Cover = () => {
   return (
     <div className="relative mt-6  ">
-   
-      <Image src={Background}  alt='x' width={610} height={200} layout="" 
-   />
- 
-     
+      <div className="w-[410px] xl:w-[580px] h-[200px]">
+        <Image src={Background} alt="x" fill={true} />
+      </div>
 
       <div className="absolute top-1/2 left-12 " id="artist-information">
         <span className="flex gap-3 items-center  text-neutral text-sm">
-<Image src={verifiedIcon}  width =  {30} height = {30}  alt="" />
+          <Image src={verifiedIcon} width={30} height={30} alt="" />
           Verified Artist
         </span>
         <span className="  text-4xl  text-escuro">Michael Jackson</span>

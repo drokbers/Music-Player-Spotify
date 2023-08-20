@@ -18,8 +18,17 @@ const config: Config = {
       'darkRed' : '#270A0A',
       'black100' : '#0E0E0E',
       'bloodRed' : '#6B0000',
-      'bordo' : '#480000'
-    }
+      'bordo' : '#480000',
+      'black' : '#000000',
+      'white' : '#FFFFFF',
+    },
+    screens: {
+      'xs': '375px', // Mobil genişlik
+      'sm': '700px', // Mobil genişlik
+      'md': '800px', // Tablet genişlik
+      'lg': '900px', // Laptop genişlik
+      'xl': '1000px', // Masaüstü genişlik
+    },
   },
   plugins: [],
 }

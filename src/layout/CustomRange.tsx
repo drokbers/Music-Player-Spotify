@@ -9,9 +9,13 @@ interface CustomRangeProps {
   onChange: (values: number[]) => void;
 }
 
-
-
-const CustomRange: React.FC<CustomRangeProps> = ({ value, step, min, max, onChange }) => {
+const CustomRange: React.FC<CustomRangeProps> = ({
+  value,
+  step,
+  min,
+  max,
+  onChange,
+}) => {
   return (
     <Range
       values={value}

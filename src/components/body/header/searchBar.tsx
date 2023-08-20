@@ -10,9 +10,9 @@ const SearchBar = () => {
     null;
   };
   return (
-    <div className="relative items-center pl-3">
+    <div className="relative hidden xl:flex items-center">
       <input
-        className="cursor-auto w-64 h-8  bg-strongRed rounded-3xl pl-3"
+        className="cursor-auto w-40  lg:w-48 h-8  bg-strongRed rounded-3xl pl-3"
         type="search"
         placeholder="Search here"
         onChange={searchHandler}
@@ -23,7 +23,7 @@ const SearchBar = () => {
           src={searchIcon}
           width={500}
           height={500}
-          alt="Picture of the author"
+          alt="serach icon"
         />
       </div>
     </div>
