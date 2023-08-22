@@ -4,13 +4,13 @@ import { MichealTrack } from "@/assets/Images";
 
 const TrackList = () => {
   return (
-    <div className=" h-full ">
-      <div className="flex w-full  mt-5 text-lg justify-between text-escuro">
+    <div className=" flex flex-col  max-w-full    h-full ">
+      <div className="flex w-full   mt-5 text-lg justify-between text-escuro">
         <span>Popular</span>
         <span className=""> See All </span>
       </div>
 
-      <div id="music-list" className="pt-3  w-full  overflow-scroll h-[350px]">
+      <div id="music-list" className="pt-3   max-h-full overflow-scroll  h-[400px] md:h-[300px]">
         <table className="text-left w-full text-bej">
           <thead className="uppercase">
             <tr>
@@ -32,7 +32,7 @@ const TrackList = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className=" max-h-none">
             <tr>
               <th className=" py-4">1</th>
               <td className="px-3 py-4">

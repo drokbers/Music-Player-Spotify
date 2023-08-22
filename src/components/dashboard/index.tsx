@@ -12,7 +12,7 @@ import {
 
 const Dashboard = () => {
   return (
-    <div className="relative hidden flex-col   lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-8">
+    <div className="relative hidden flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-8">
       <span className="text-3xl pt-8 ">MetroFM</span>
       <div id="menu" className="flex flex-col gap-3  ">
         <span className="text-base">Menu</span>

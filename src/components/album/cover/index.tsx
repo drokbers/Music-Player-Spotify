@@ -5,8 +5,8 @@ import { Background, Micheal } from "@/assets/Images";
 
 const Cover = () => {
   return (
-    <div className="relative mt-6  ">
-      <div className="w-[410px] xl:w-[580px] h-[200px]">
+    <div className="relative  w-full mt-6  ">
+      <div className="w-[480px] max-w-full xl:w-[580px] h-[200px]">
         <Image src={Background} alt="x" fill={true} />
       </div>
 

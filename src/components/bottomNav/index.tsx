@@ -6,7 +6,7 @@ import { useMemo, useRef, useState } from "react";
 import secondsToTime from "@/utils/time";
 
 import CustomRange from "@/layout/CustomRange";
-import ClientOnly from "@/utils/clientOnly";
+import ClientOnly from "@/utils/ClientOnly";
 
 import { MichealPoster } from "@/assets/Images";
 import {
@@ -43,10 +43,10 @@ const BottomNav = () => {
   }, [volume]);
 
   return (
-    <div className=" flex justify-between  items-center  absolute bottom-0  h-20 w-full gap-2 text-escuro  bg-bloodRed">
-      <div className="min-w-[11.25rem] w-[%30]">sol</div>
+    <div className=" flex justify-center xs:justify-between  rounded-t-3xl items-center  absolute bottom-0  h-20 w-full gap-2 text-escuro  bg-bloodRed">
+      <div className="hidden xs:flex min-w-[11.25rem] w-[%30]">sol</div>
 
-      <div className="flex flex-col item-center px-4 t-2 max-w-[45.125rem] w-[40%]">
+      <div className="flex flex-col item-center  px-4 t-2 max-w-[45.125rem] w-[40%]">
         <div className="flex  items-center justify-center  gap-x-2">
           <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
             <Image src={RepeatIcon} alt="Micheal Jackson" />
@@ -103,7 +103,9 @@ const BottomNav = () => {
         </div>
       </div>
 
-      <div className="min-w-[11.25rem] w-[%30] flex pr-5 items-center justify-end">
+
+{/* right */}
+      <div className="hidden  min-w-[9.25rem] md:min-w-[11.25rem] w-[%20] xs:flex  pr-14 items-center justify-center xs:justify-end">
         <button
           onClick={() => {
             if (volume === 0) {

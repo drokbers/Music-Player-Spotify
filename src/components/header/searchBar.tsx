@@ -10,9 +10,9 @@ const SearchBar = () => {
     null;
   };
   return (
-    <div className="relative hidden xl:flex items-center">
+    <div className="relative hidden xs:flex md:hidden xl:flex items-center">
       <input
-        className="cursor-auto w-40  lg:w-48 h-8  bg-strongRed rounded-3xl pl-3"
+        className="cursor-auto  w-40  lg:w-48 h-8  bg-strongRed rounded-3xl pl-3"
         type="search"
         placeholder="Search here"
         onChange={searchHandler}
