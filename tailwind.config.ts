@@ -21,9 +21,11 @@ const config: Config = {
       'bordo' : '#480000',
       'black' : '#000000',
       'white' : '#FFFFFF',
+       'link': '#b3b3b3',
     },
     screens: {
-      'xs': '375px', // Mobil genişlik
+      'xxs': '390px', // Mobil genişlik
+      'xs': '500px', // Mobil genişlik
       'sm': '700px', // Mobil genişlik
       'md': '800px', // Tablet genişlik
       'lg': '900px', // Laptop genişlik
