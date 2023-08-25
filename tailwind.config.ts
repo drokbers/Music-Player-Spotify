@@ -31,6 +31,17 @@ const config: Config = {
       'lg': '900px', // Laptop genişlik
       'xl': '1000px', // Masaüstü genişlik
     },
+    extend: {
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+     }
   },
   plugins: [],
 }

@@ -1,21 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type initialState = {
-  value: PlayerState;
-};
 
-type PlayerState = {
-  current: boolean;
-  controls: boolean;
+interface Song {
+  id: number;
+  title: string;
+  playing: string;
+  time: string;
+  album: string;
+  src: string;
+}
+
+interface PlayerState {
+  current: Song | null;
+  controls: any;
   playing: boolean;
-};
+}
 
-const initialState = {
-  value: {
-    current: false,
-    controls: false,
-    playing: false,
-  },
+
+const initialState: PlayerState = {
+  current: null,
+  controls: null,
+  playing: false,
 };
 
 
@@ -23,18 +28,17 @@ export const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    setCurrent: (state, action: PayloadAction<boolean>) => {
-      state.value.current = action.payload;
+    setCurrent: (state, action: PayloadAction<Song | null>) => {
+      state.current = action.payload;
     },
-    setControls: (state, action: PayloadAction<boolean>) => {
-      state.value.current = action.payload;
+    setControls: (state, action: PayloadAction<any>) => {
+      state.controls = action.payload;
     },
     setPlaying: (state, action: PayloadAction<boolean>) => {
-      state.value.current = action.payload;
+      state.playing = action.payload;
     },
   },
 });
 
 export const { setCurrent, setControls, setPlaying } = playerSlice.actions;
-
 export default playerSlice.reducer;

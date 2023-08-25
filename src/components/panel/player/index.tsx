@@ -1,44 +1,81 @@
+"use client";
+
 import Image from "next/image";
+import ReactPlayer from "react-player";
+import { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+
+import secondsToTime from "@/utils/time";
+import CustomRange from "@/layout/CustomRange";
+import ClientOnly from "@/utils/ClientOnly";
+import PlayerIcons from "@/layout/PlayerIcons";
 
 import { MichealPoster } from "@/assets/Images";
-import {
-  RepeatIcon,
-  RandomIcon,
-  BackIcon,
-  PlayIcon,
-  NextIcon,
-} from "@/assets/Icons";
+
 const Player = () => {
+  const [duration, setDuration] = useState(0);
+  const [playedSeconds, setPlayedSeconds] = useState(0);
+  const [volume, setVolume] = useState(0.5);
+
+  const playerRef = useRef<ReactPlayer>(null);
+
+  const { current } = useSelector((state: any) => state.player);
+  const { playing } = useSelector((state: any) => state.player);
   return (
     <div className="flex  flex-col pt-4  rounded-2xl gap-2 items-center bg-bloodRed w-[250px] text-escuro h-[320px]">
       <span className="text-sm">Now Playing</span>
-      <Image
-        className="rounded-2xl"
-        src={MichealPoster}
-        width={200}
-        height={120}
-        alt="xxx"
-      />
-      <div className="flex flex-col items-center">
-        <span className="text-lg">Beat It</span>
-        <span className="text-bej">Michael Jackson</span>
+      <div className="relative w-52 h-32 ">
+        <Image
+          className="rounded-2xl "
+          src={current?.cover || MichealPoster}
+          fill
+          style={{ objectFit: "cover" }}
+          alt="`xxx`"
+        />
       </div>
 
-      <div className="flex  gap-2">
-        <span>2:15</span>
-        <span>-----------------</span>
-        <span>4:18</span>
-      </div>
-      <div className="flex flex-row  gap-2 items-center justify-between">
-        <Image width={20} height={20} alt="" src={RepeatIcon} />
-        <Image width={30} height={30} alt="" src={BackIcon} />
-        <div className="flex rounded-full items-center justify-center bg-bordo w-10 h-10">
-          <Image width={30} height={30} alt="" src={PlayIcon} />
+      <div className="flex flex-col items-center overflow-x-hidden">
+        <div className="animate-marquee whitespace-nowrap" >
+        <span className="text-lg">{current?.title}</span>
         </div>
-
-        <Image width={30} height={30} alt="" src={NextIcon} />
-        <Image width={20} height={20} alt="" src={RandomIcon} />
+       
+        <span className="text-bej">{current?.artist}</span>
       </div>
+      <div className="w-full flex items-center gap-x-2 mr-2">
+        <ClientOnly>
+          <ReactPlayer
+            ref={playerRef}
+            url={current?.src}
+            playing={playing}
+            volume={volume}
+            muted={volume === 0}
+            onDuration={(d) => setDuration(d)}
+            onProgress={({ playedSeconds }) => setPlayedSeconds(playedSeconds)}
+            width="0%"
+            height="0%"
+            style={{ display: "none" }}
+          />
+        </ClientOnly>
+
+        <div className="text-opacity-70">{secondsToTime(playedSeconds)}</div>
+
+        <CustomRange
+          className="w-full group flex h-2"
+          value={[playedSeconds]}
+          step={0.1}
+          min={0}
+          max={duration || 1}
+          onChange={(values: number[]) => {
+            if (playerRef.current && values.length > 0) {
+              playerRef.current.seekTo(values[0], "seconds");
+            }
+          }}
+        />
+
+        <div className="text-opacity-70">{secondsToTime(duration || 0)}</div>
+      </div>
+
+      <PlayerIcons />
     </div>
   );
 };

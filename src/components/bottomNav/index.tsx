@@ -1,21 +1,16 @@
 "use client";
+
 import Image from "next/image";
 import ReactPlayer from "react-player";
 import { useMemo, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 import secondsToTime from "@/utils/time";
-
 import CustomRange from "@/layout/CustomRange";
 import ClientOnly from "@/utils/ClientOnly";
+import PlayerIcons from "@/layout/PlayerIcons";
 
-import { MichealPoster } from "@/assets/Images";
 import {
-  RepeatIcon,
-  RandomIcon,
-  BackIcon,
-  PlayIcon,
-  NextIcon,
-  PauseIcon,
   VolumeMutedIcon,
   VolumeFullIcon,
   VolumeNormalIcon,
@@ -23,12 +18,14 @@ import {
 } from "@/assets/Icons";
 
 const BottomNav = () => {
-  const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [volume, setVolume] = useState(0.5);
 
   const playerRef = useRef<ReactPlayer>(null);
+
+  const { current } = useSelector((state: any) => state.player);
+  const { playing } = useSelector((state: any) => state.player);
 
   const volumeIcon = useMemo(() => {
     if (volume === 0) {
@@ -43,35 +40,39 @@ const BottomNav = () => {
   }, [volume]);
 
   return (
-    <div className=" flex justify-center xs:justify-between  rounded-t-3xl items-center  absolute bottom-0  h-20 w-full gap-2 text-escuro  bg-bloodRed">
-      <div className="hidden xs:flex min-w-[11.25rem] w-[%30]">sol</div>
+    <div className=" flex  md:hidden justify-center xs:justify-between  rounded-t-3xl items-center  h-20 absolute bottom-0  w-full gap-2 text-escuro  bg-bloodRed">
+      <div className="flex min-w-[11.25rem] w-[%30]">
+        {current && (
+          <div className="flex  items-center ">
+            <div className="w-20  pl-5 mr-3  ">
+              <Image
+                src={current?.cover}
+                width={60}
+                height={60}
+                alt="Micheal Jackson"
+              />
+            </div>
 
-      <div className="flex flex-col item-center  px-4 t-2 max-w-[45.125rem] w-[40%]">
-        <div className="flex  items-center justify-center  gap-x-2">
-          <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
-            <Image src={RepeatIcon} alt="Micheal Jackson" />
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
-            <Image src={BackIcon} alt="Micheal Jackson" />
-          </button>
-          <button
-            onClick={() => setPlaying(!playing)}
-            className="w-10 h-10 flex items-center  bg-bordo rounded-full hover:scale-[1.06] justify-center text-opacity-70 hover:text-opacity-100"
-          >
-            <Image src={playing ? PauseIcon : PlayIcon} alt="Micheal Jackson" />
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
-            <Image src={NextIcon} alt="Micheal Jackson" />
-          </button>
-          <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
-            <Image src={RandomIcon} alt="Micheal Jackson" />
-          </button>
-        </div>
-        <div className="w-full flex items-center  gap-x-2">
+            <div className=" flex flex-col overflow-x-hidden">
+              <div className="animate-marquee whitespace-nowrap">
+                <h6 className="text-sm w-12 ">{current.title}</h6>
+              </div>
+
+              <p className="text-[0.688rem] text-white text-opacity-70">
+                {current.artist}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col item-center   t-2 max-w-[45.125rem] w-[40%]">
+        <PlayerIcons />
+        <div className="w-full flex items-center gap-x-2">
           <ClientOnly>
             <ReactPlayer
               ref={playerRef}
-              url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+              url={current?.src}
               playing={playing}
               volume={volume}
               muted={volume === 0}
@@ -88,6 +89,7 @@ const BottomNav = () => {
           <div className="text-opacity-70">{secondsToTime(playedSeconds)}</div>
 
           <CustomRange
+            className="w-full group flex h-2"
             value={[playedSeconds]}
             step={0.1}
             min={0}
@@ -103,9 +105,8 @@ const BottomNav = () => {
         </div>
       </div>
 
-
-{/* right */}
-      <div className="hidden  min-w-[9.25rem] md:min-w-[11.25rem] w-[%20] xs:flex  pr-14 items-center justify-center xs:justify-end">
+      {/* right */}
+      <div className="hidden  xss:min-w-[7.25rem]   pr-4 w-[%20] xs:flex  items-center justify-center ">
         <button
           onClick={() => {
             if (volume === 0) {
@@ -119,14 +120,15 @@ const BottomNav = () => {
           <Image src={volumeIcon} alt="Volume" />
         </button>
 
-        <div className=" w-[5.813rem] max-w-full">
+        <div className="w-[4.813rem] max-w-full items-center ">
           <CustomRange
-            value={[volume * 100]} 
+            className="w-full group flex h-2"
+            value={[volume * 100]}
             step={1}
             min={0}
             max={100}
             onChange={(values: number[]) => {
-              setVolume(values[0] / 100); 
+              setVolume(values[0] / 100);
             }}
           />
         </div>

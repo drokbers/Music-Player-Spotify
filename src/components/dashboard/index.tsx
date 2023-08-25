@@ -10,10 +10,18 @@ import {
   podcastIcon,
 } from "@/assets/Icons";
 
+import {Logo} from "@/assets/Images"
+import Link from "next/link";
+
 const Dashboard = () => {
   return (
-    <div className="relative hidden flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-8">
-      <span className="text-3xl pt-8 ">MetroFM</span>
+    <div className="relative hidden flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-5">
+      <div className="pr-6 pt-8 min-w-[100px]">
+        <Link href='/'>
+        <Image src={Logo} width={200} height={100} alt="xxx" /></Link>
+     
+      </div>
+    
       <div id="menu" className="flex flex-col gap-3  ">
         <span className="text-base">Menu</span>
         <span className="flex gap-3 items-center">

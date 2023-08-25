@@ -7,6 +7,7 @@ interface CustomRangeProps {
   min: number;
   max: number;
   onChange: (values: number[]) => void;
+  className?: string;
 }
 
 const CustomRange: React.FC<CustomRangeProps> = ({
@@ -15,6 +16,7 @@ const CustomRange: React.FC<CustomRangeProps> = ({
   min,
   max,
   onChange,
+  className,
 }) => {
   return (
     <Range
@@ -27,16 +29,16 @@ const CustomRange: React.FC<CustomRangeProps> = ({
         <div
           onMouseDown={props.onMouseDown}
           onTouchStart={props.onTouchStart}
-          className="w-full h-7 flex group"
+          className={`${className}`}
           style={props.style}
         >
           <div
             ref={props.ref}
-            className="h-1 w-full rounded-md self-center"
+            className="h-1 w-full rounded-xl self-center"
             style={{
               background: getTrackBackground({
                 values: value,
-                colors: ["#ffff", "#0c0a09"],
+                colors: ["#1db954", "#535353"],
                 min,
                 max,
               }),

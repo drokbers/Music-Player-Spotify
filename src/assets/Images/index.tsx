@@ -3,6 +3,7 @@ import Background from "./Background.png"
 import Micheal from "./Michael.png"
 import playlistBackground from "./playlistBackground.png"
 import MichealPoster from "./MichaelPoster.png"
+import Logo from "./logo.png"
 
 
 export {
@@ -10,5 +11,6 @@ export {
     Background,
     Micheal,
     playlistBackground,
-    MichealPoster
+    MichealPoster,
+    Logo
 }

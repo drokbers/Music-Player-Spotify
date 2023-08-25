@@ -16,14 +16,14 @@ const Collections = (props: {
   }[];
 }) => {
   return (
-    <div className=" mt-4  ">
+    <div className="mt-4   ">
         <div className="flex  items-center justify-between ">
         <h2 className="text-2xl text-white font-semibold tracking-tight hover:underline">{props.title}</h2>
         <span className={"text-xs hover:underline font-semibold uppercase text-link tracking-wider"} >SEE ALL</span>
 
         </div>
      
-      <div className="grid grid-cols-4  gap-x-6 ">
+      <div className="grid grid-cols-4 gap-x-6 ">
         {props.items.slice(-4).map((item) => (
           <CollectionItem
             key={item.id}
@@ -33,10 +33,12 @@ const Collections = (props: {
             image={item.image}
             type={item.type}
             active={item.active}
+       
             
           />
         ))}
       </div>
+      
     </div>
   );
 };
