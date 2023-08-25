@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const Dashboard = () => {
   return (
-    <div className="relative hidden flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-5">
+    <div className="relative hidden pr-8  flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-8">
       <div className="pr-6 pt-8 min-w-[100px]">
         <Link href='/'>
         <Image src={Logo} width={200} height={100} alt="xxx" /></Link>

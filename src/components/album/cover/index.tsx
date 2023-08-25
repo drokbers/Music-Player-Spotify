@@ -18,7 +18,7 @@ const Cover = ({ id }: CoverProps) => {
         <Image src={Background} alt="x" fill={true} />
       </div>
 
-      <div className="absolute top-1/2 left-12 " id="artist-information">
+      <div className="z-40 absolute top-1/2 left-12 " id="artist-information">
         <span className="flex gap-3 items-center  text-neutral text-sm">
           <Image src={verifiedIcon} width={30} height={30} alt="" />
           Verified Artist
@@ -26,12 +26,16 @@ const Cover = ({ id }: CoverProps) => {
         <span className="  text-4xl  text-escuro">{artistData?.artist}</span>
       </div>
 
-      <div className="absolute h-1/2  w-2/5 top-1/2 right-0" id="artist-photo">
+      <div className="absolute h-1/2 overflow-hidden w-2/5 top-1/2 right-0" id="artist-photo">
         <Image
           src={artistBackground}
-          fill
+          // width="100%"
+          // height="100%"
           alt="wallpaper"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          width={500}
+          height={500}
+          style={{ objectFit: "contain" }}
+          // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     </div>

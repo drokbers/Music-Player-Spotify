@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ReactPlayer from "react-player";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import secondsToTime from "@/utils/time";
@@ -12,15 +12,28 @@ import PlayerIcons from "@/layout/PlayerIcons";
 
 import { MichealPoster } from "@/assets/Images";
 
+import { setPlaying } from "@/redux/features/PlayerSlice";
+
+
 const Player = () => {
   const [duration, setDuration] = useState(0);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const [current, setCurrent] = useState<any>(null);
 
   const playerRef = useRef<ReactPlayer>(null);
 
-  const { current } = useSelector((state: any) => state.player);
-  const { playing } = useSelector((state: any) => state.player);
+  const { allSongs, selectedId, playing } = useSelector(
+    (state: any) => state.player
+  );
+
+    useEffect(() => {
+    const current = allSongs.find((song: any) => song.id === selectedId);
+    setCurrent(current);
+    setPlaying(true);
+  }, [selectedId, allSongs]);
+
+
   return (
     <div className="flex  flex-col pt-4  rounded-2xl gap-2 items-center bg-bloodRed w-[250px] text-escuro h-[320px]">
       <span className="text-sm">Now Playing</span>
@@ -35,10 +48,10 @@ const Player = () => {
       </div>
 
       <div className="flex flex-col items-center overflow-x-hidden">
-        <div className="animate-marquee whitespace-nowrap" >
-        <span className="text-lg">{current?.title}</span>
+        <div className="animate-marquee whitespace-nowrap">
+          <span className="text-lg">{current?.title}</span>
         </div>
-       
+
         <span className="text-bej">{current?.artist}</span>
       </div>
       <div className="w-full flex items-center gap-x-2 mr-2">

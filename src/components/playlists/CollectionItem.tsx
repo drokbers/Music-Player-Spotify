@@ -1,7 +1,7 @@
+"use client"
+
 import Image from "next/image";
-
-
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const CollectionItem = (props: {
   artist: string;
@@ -11,6 +11,8 @@ const CollectionItem = (props: {
   active: boolean;
   id: number;
 }) => {
+  const router = useRouter()
+
   const imageStyle = (props: { type: string; active: boolean }) => {
     switch (props.type) {
       case "artist":
@@ -24,10 +26,10 @@ const CollectionItem = (props: {
     }
   };
   return (
-    <Link
+    <button
       key={props.id}
-      prefetch={false}
-      href={props.active ? `/album/${props.id}` : "#"}
+      disabled={!props.active}  
+      onClick={() => router.push(`/album/${props.id}`)}
     >
       <div
         className={`flex flex-col h-60 p-3 drop-shadow-md mt-3 bg-linearRed hover:bg-bloodRed ${
@@ -52,7 +54,7 @@ const CollectionItem = (props: {
           </span>
         </div>
       </div>
-    </Link>
+    </button>
   );
 };
 

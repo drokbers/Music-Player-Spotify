@@ -3,6 +3,26 @@ import Collections from "./collections";
 
 const Playlists = () => {
   const PopulerMusics = [
+    {
+      id: 1,
+      artist: "Michael Jackson",
+      albumName: "Thriller",
+      description: "Original Soundtrack",
+      image: "https://i.imgur.com/1swspRc.jpeg",
+      type: "album",
+      active: true,
+      src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
+    },
+    {
+      id: 2,
+      artist: "Nirvana",
+      albumName: "Nevermind",
+      description: "Grunge",
+      image: "https://i.imgur.com/zRrX7r4.jpeg",
+      type: "album",
+      active: true,
+      src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
+    },
 
     {
       id: 5,
@@ -15,25 +35,16 @@ const Playlists = () => {
       src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
     },
     {
-        id: 1,
-        artist: "Michael Jackson",
-        albumName: "Thriller",
-        description: "Original Soundtrack",
-        image: "https://i.imgur.com/1swspRc.jpeg",
-        type: "album",
-        active: true,
-        src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
-      },
-      {
-        id: 2,
-        artist: "Nirvana",
-        albumName: "Nevermind",
-        description: "Grunge",
-        image: "https://i.imgur.com/zRrX7r4.jpeg",
-        type: "album",
-        active: true,
-        src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
-      },
+      id: 1,
+      artist: "Michael Jackson",
+      albumName: "Thriller",
+      description: "Original Soundtrack",
+      image: "https://i.imgur.com/1swspRc.jpeg",
+      type: "album",
+      active: true,
+      src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
+    },
+
     {
       id: 3,
       artist: "John Lennon",
@@ -44,14 +55,15 @@ const Playlists = () => {
       active: false,
       src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
     },
+
     {
-      id: 4,
-      artist: "Bob Dylan",
-      albumName: "Highway 61 Revisited",
-      description: "Folk Rock",
-      image: "https://i.scdn.co/image/ab67706c0000da84fcb8b92f2615d3261b8eb146",
+      id: 2,
+      artist: "Nirvana",
+      albumName: "Nevermind",
+      description: "Grunge",
+      image: "https://i.imgur.com/zRrX7r4.jpeg",
       type: "album",
-      active: false,
+      active: true,
       src: "https://freesound.org/data/previews/612/612095_5674468-lq.mp3",
     },
 
@@ -175,7 +187,7 @@ const Playlists = () => {
   ];
 
   return (
-    <div className="flex  flex-col w-full md:w-10/12 gap-5   pl-5 pr-5 sm:pl-20 sm:pr-20  bg-gradient-to-t from-stone to-linearRed">
+    <div className="flex  flex-col w-full md:w-7/12 gap-5   pl-5 pr-5 sm:pl-20 sm:pr-20  bg-gradient-to-t from-stone to-linearRed">
       <Header />
       <div className="overflow-auto">
         <Collections title="Populers" items={PopulerMusics} />

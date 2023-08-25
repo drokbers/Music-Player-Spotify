@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import ReactPlayer from "react-player";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import secondsToTime from "@/utils/time";
@@ -16,16 +16,27 @@ import {
   VolumeNormalIcon,
   VolumeLowIcon,
 } from "@/assets/Icons";
+import { setPlaying } from "@/redux/features/PlayerSlice";
 
 const BottomNav = () => {
   const [duration, setDuration] = useState(0);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const [current, setCurrent] = useState<any>(null);
+  // const [muted, setMuted] = useState(false);
 
   const playerRef = useRef<ReactPlayer>(null);
 
-  const { current } = useSelector((state: any) => state.player);
-  const { playing } = useSelector((state: any) => state.player);
+  const { allSongs, selectedId, playing } = useSelector(
+    (state: any) => state.player
+  );
+
+  useEffect(() => {
+    const current = allSongs.find((song: any) => song.id === selectedId);
+    setCurrent(current);
+    setPlaying(true);
+    console.log(current);
+  }, [selectedId, allSongs]);
 
   const volumeIcon = useMemo(() => {
     if (volume === 0) {
@@ -39,8 +50,11 @@ const BottomNav = () => {
     }
   }, [volume]);
 
+  console.log(volume)
+  console.log()
+
   return (
-    <div className=" flex  md:hidden justify-center xs:justify-between  rounded-t-3xl items-center  h-20 absolute bottom-0  w-full gap-2 text-escuro  bg-bloodRed">
+    <div className=" flex  md:hidden justify-center sm:justify-between  rounded-t-3xl items-center  h-20 absolute bottom-0  w-full gap-2 text-escuro  bg-bloodRed">
       <div className="hidden sm:flex min-w-[11.25rem] w-[%30]">
         {current && (
           <div className="flex  items-center ">
@@ -55,18 +69,18 @@ const BottomNav = () => {
 
             <div className=" flex flex-col overflow-x-hidden">
               <div className="animate-marquee whitespace-nowrap">
-                <h6 className="text-sm w-12 ">{current.title}</h6>
+                <h6 className="text-sm text-[0.688rem] ">{current?.title}</h6>
               </div>
 
               <p className="text-[0.688rem] text-white text-opacity-70">
-                {current.artist}
+                {current?.artist}
               </p>
             </div>
           </div>
         )}
       </div>
 
-      <div className="flex flex-col item-center   t-2 max-w-[45.125rem] w-[40%]">
+      <div className="flex flex-col item-center  t-2 max-w-[45.125rem] w-[40%]">
         <PlayerIcons />
         <div className="w-full flex items-center gap-x-2">
           <ClientOnly>
@@ -75,7 +89,8 @@ const BottomNav = () => {
               url={current?.src}
               playing={playing}
               volume={volume}
-              muted={volume === 0}
+              controls={true}
+               muted={volume === 0}
               onDuration={(d) => setDuration(d)}
               onProgress={({ playedSeconds }) =>
                 setPlayedSeconds(playedSeconds)
@@ -83,6 +98,7 @@ const BottomNav = () => {
               width="0%"
               height="0%"
               style={{ display: "none" }}
+           
             />
           </ClientOnly>
 

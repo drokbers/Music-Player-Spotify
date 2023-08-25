@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import {
   RepeatIcon,
@@ -9,7 +9,7 @@ import {
   PauseIcon,
 } from "@/assets/Icons";
 
-import { setPlaying } from "@/redux/features/PlayerSlice";
+import { setCurrent, setPlaying } from "@/redux/features/PlayerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -18,18 +18,64 @@ const PlayerIcons = () => {
 
   const [playingPlayer, setPlayingPlayer] = useState<boolean>(false);
 
+  const { allSongs, selectedId, playing } = useSelector(
+    (state: any) => state.player
+  );
+
+  const current = allSongs.find((song: any) => song.id === selectedId);
+
   useEffect(() => {
     dispatch(setPlaying(playingPlayer));
   }, [playingPlayer]);
 
-  const { playing } = useSelector((state: any) => state.player);
+  const nextSongHandler = () => {
+    const nextSongId = selectedId + 1;
+    // dispatch(setPlaying(true));
+    if (nextSongId > allSongs.length) {
+      return dispatch(setCurrent({ allSongs: allSongs, selectedId: 1 }));
+    } else {
+      return dispatch(
+        setCurrent({ allSongs: allSongs, selectedId: nextSongId })
+      );
+    }
+  };
+  const previousSongHandler = () => {
+    const previousSongId = selectedId - 1;
+    // dispatch(setPlaying(true));
+    if (previousSongId < 1) {
+      return dispatch(
+        setCurrent({ allSongs: allSongs, selectedId: allSongs.length })
+      );
+    } else {
+      return dispatch(
+        setCurrent({ allSongs: allSongs, selectedId: previousSongId })
+      );
+    }
+  };
+
+  const randomSongHandler = () => {
+    let randomSongId = Math.floor(Math.random() * allSongs.length) + 1;
+
+    while (randomSongId === selectedId) {
+      randomSongId = Math.floor(Math.random() * allSongs.length) + 1;
+    }
+
+    dispatch(setCurrent({ allSongs: allSongs, selectedId: randomSongId }));
+    dispatch(setPlaying(true));
+  };
+
+  console.log(selectedId);
 
   return (
     <div className="flex  items-center justify-center  gap-x-2">
-      <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
+      <button disabled className="w-8 h-8  flex items-center justify-center text-opacity-70 hover:text-opacity-100">
+
         <Image src={RepeatIcon} alt="Micheal Jackson" />
       </button>
-      <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
+      <button
+        onClick={previousSongHandler}
+        className="w-8 h-8 flex items-center justify-center hover:scale-[1.06]  text-opacity-70 hover:text-opacity-100"
+      >
         <Image src={BackIcon} alt="Micheal Jackson" />
       </button>
       <button
@@ -38,10 +84,16 @@ const PlayerIcons = () => {
       >
         <Image src={playing ? PauseIcon : PlayIcon} alt="Micheal Jackson" />
       </button>
-      <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
+      <button
+        onClick={nextSongHandler}
+        className="w-8 h-8 flex items-center  hover:scale-[1.06] justify-center text-opacity-70 hover:text-opacity-100"
+      >
         <Image src={NextIcon} alt="Micheal Jackson" />
       </button>
-      <button className="w-8 h-8 flex items-center justify-center text-opacity-70 hover:text-opacity-100">
+      <button
+        onClick={randomSongHandler}
+        className="w-8 h-8 flex items-center justify-center hover:scale-[1.06] text-opacity-70 hover:text-opacity-100"
+      >
         <Image src={RandomIcon} alt="Micheal Jackson" />
       </button>
     </div>
