@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import secondsToTime from "@/utils/time";
 import CustomRange from "@/layout/CustomRange";
-import ClientOnly from "@/utils/ClientOnly";
+import ClientOnly from "@/utils/ClientOnlyU";
 import PlayerIcons from "@/layout/PlayerIcons";
 
 import {
@@ -41,7 +41,7 @@ const BottomNav = () => {
 
   return (
     <div className=" flex  md:hidden justify-center xs:justify-between  rounded-t-3xl items-center  h-20 absolute bottom-0  w-full gap-2 text-escuro  bg-bloodRed">
-      <div className="flex min-w-[11.25rem] w-[%30]">
+      <div className="hidden sm:flex min-w-[11.25rem] w-[%30]">
         {current && (
           <div className="flex  items-center ">
             <div className="w-20  pl-5 mr-3  ">

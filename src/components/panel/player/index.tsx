@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import secondsToTime from "@/utils/time";
 import CustomRange from "@/layout/CustomRange";
-import ClientOnly from "@/utils/ClientOnly";
+import ClientOnly from "@/utils/ClientOnlyU";
 import PlayerIcons from "@/layout/PlayerIcons";
 
 import { MichealPoster } from "@/assets/Images";

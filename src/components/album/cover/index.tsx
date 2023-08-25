@@ -8,17 +8,13 @@ interface CoverProps {
   id: string;
 }
 
-
-
 const Cover = ({ id }: CoverProps) => {
-
-  const artistData = musicData(id)
+  const artistData = musicData(id);
   const artistBackground = artistData?.background || "";
-
 
   return (
     <div className="relative  w-full mt-6  ">
-      <div className="w-[480px] max-w-full xl:w-[580px] h-[200px]">
+      <div className="w-[480px] max-w-full  xl:w-[580px] h-[200px]">
         <Image src={Background} alt="x" fill={true} />
       </div>
 
@@ -31,7 +27,12 @@ const Cover = ({ id }: CoverProps) => {
       </div>
 
       <div className="absolute h-1/2  w-2/5 top-1/2 right-0" id="artist-photo">
-        <Image src={artistBackground} layout="fill" alt="wallpaper" />
+        <Image
+          src={artistBackground}
+          fill
+          alt="wallpaper"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
     </div>
   );
