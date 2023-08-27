@@ -10,6 +10,13 @@ export interface Song {
   artist: string;
 }
 
+export interface PlayerState {
+  current: Song | null;
+  allSongs: Song[];
+  selectedId: number | null;
+  playing: boolean;
+}
+
 
 export interface Album {
   id: number;

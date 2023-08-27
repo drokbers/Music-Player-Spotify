@@ -1,5 +1,8 @@
 "use client";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
 import {
   RepeatIcon,
   RandomIcon,
@@ -8,10 +11,9 @@ import {
   NextIcon,
   PauseIcon,
 } from "@/assets/Icons";
-
+import { PlayerState, Song } from "@/types";
 import { setCurrent, setPlaying } from "@/redux/features/PlayerSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+
 
 const PlayerIcons = () => {
   const dispatch = useDispatch();
@@ -19,18 +21,20 @@ const PlayerIcons = () => {
   const [playingPlayer, setPlayingPlayer] = useState<boolean>(false);
 
   const { allSongs, selectedId, playing } = useSelector(
-    (state: any) => state.player
+    (state: { player: PlayerState }) => state.player
   );
 
-  const current = allSongs.find((song: any) => song.id === selectedId);
+  const current = allSongs.find((song: Song) => song.id === selectedId);
 
   useEffect(() => {
     dispatch(setPlaying(playingPlayer));
   }, [playingPlayer]);
 
   const nextSongHandler = () => {
+    if (selectedId === null) return; 
+
     const nextSongId = selectedId + 1;
-    // dispatch(setPlaying(true));
+    dispatch(setPlaying(true));
     if (nextSongId > allSongs.length) {
       return dispatch(setCurrent({ allSongs: allSongs, selectedId: 1 }));
     } else {
@@ -40,8 +44,10 @@ const PlayerIcons = () => {
     }
   };
   const previousSongHandler = () => {
+    if (selectedId === null) return; 
+    
     const previousSongId = selectedId - 1;
-    // dispatch(setPlaying(true));
+    dispatch(setPlaying(true));
     if (previousSongId < 1) {
       return dispatch(
         setCurrent({ allSongs: allSongs, selectedId: allSongs.length })

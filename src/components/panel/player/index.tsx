@@ -70,7 +70,7 @@ const Player = () => {
           />
         </ClientOnly>
 
-        <div className="text-opacity-70">{secondsToTime(playedSeconds)}</div>
+        <div className="text-opacity-70 pl-2">{secondsToTime(playedSeconds)}</div>
 
         <CustomRange
           className="w-full group flex h-2"
@@ -85,7 +85,7 @@ const Player = () => {
           }}
         />
 
-        <div className="text-opacity-70">{secondsToTime(duration || 0)}</div>
+        <div className="text-opacity-70 pr-2">{secondsToTime(duration || 0)}</div>
       </div>
 
       <PlayerIcons />

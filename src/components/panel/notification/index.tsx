@@ -11,7 +11,7 @@ const Notification = () => {
           
           <Image className="rounded-2xl" src={playlistNotiIcon}  width={60}
       height={60}
-      alt="Picture of the author"
+      alt="playlist NotiIcon"
     />
           <div className="flex flex-col gap-2 pt-1">
             <span className="text-lg">Playlist Added</span>{" "}
@@ -22,7 +22,7 @@ const Notification = () => {
           
           <Image className="rounded-2xl" src={musicIcon}  width={60}
       height={60}
-      alt="Picture of the author"
+      alt="musicIcon"
     />
           <div className="flex flex-col gap-2 pt-1">
             <span className="text-lg">Playlist Added</span>{" "}
@@ -33,7 +33,7 @@ const Notification = () => {
           
           <Image className="rounded-2xl" src={musicIcon}  width={60}
       height={60}
-      alt="Picture of the author"
+      alt="musicIcon"
     />
           <div className="flex flex-col gap-2 pt-1">
             <span className="text-lg">Playlist Added</span>{" "}

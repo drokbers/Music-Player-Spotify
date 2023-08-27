@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import ReactPlayer from "react-player";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -9,6 +10,7 @@ import secondsToTime from "@/utils/time";
 import CustomRange from "@/layout/CustomRange";
 import ClientOnly from "@/utils/ClientOnlyU";
 import PlayerIcons from "@/layout/PlayerIcons";
+import {PlayerState, Song } from "@/types";
 
 import {
   VolumeMutedIcon,
@@ -22,20 +24,19 @@ const BottomNav = () => {
   const [duration, setDuration] = useState(0);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [volume, setVolume] = useState(0.5);
-  const [current, setCurrent] = useState<any>(null);
-  // const [muted, setMuted] = useState(false);
+  const [current, setCurrent] = useState<Song | null>(null);
 
   const playerRef = useRef<ReactPlayer>(null);
 
   const { allSongs, selectedId, playing } = useSelector(
-    (state: any) => state.player
+    (state: { player: PlayerState }) => state.player
   );
 
   useEffect(() => {
-    const current = allSongs.find((song: any) => song.id === selectedId);
+    const current: Song | null = allSongs.find((song: Song) => song.id === selectedId) || null;
     setCurrent(current);
     setPlaying(true);
-    console.log(current);
+
   }, [selectedId, allSongs]);
 
   const volumeIcon = useMemo(() => {
@@ -50,10 +51,11 @@ const BottomNav = () => {
     }
   }, [volume]);
 
-  console.log(volume)
-  console.log()
+  console.log(volume);
+  console.log();
 
   return (
+    
     <div className=" flex  md:hidden justify-center sm:justify-between  rounded-t-3xl items-center  h-20 absolute bottom-0  w-full gap-2 text-escuro  bg-bloodRed">
       <div className="hidden sm:flex min-w-[11.25rem] w-[%30]">
         {current && (
@@ -80,6 +82,7 @@ const BottomNav = () => {
         )}
       </div>
 
+      {/* mid */}
       <div className="flex flex-col item-center  t-2 max-w-[45.125rem] w-[40%]">
         <PlayerIcons />
         <div className="w-full flex items-center gap-x-2">
@@ -89,8 +92,8 @@ const BottomNav = () => {
               url={current?.src}
               playing={playing}
               volume={volume}
-              controls={true}
-               muted={volume === 0}
+              controls={false}
+              muted={volume === 0}
               onDuration={(d) => setDuration(d)}
               onProgress={({ playedSeconds }) =>
                 setPlayedSeconds(playedSeconds)
@@ -98,7 +101,6 @@ const BottomNav = () => {
               width="0%"
               height="0%"
               style={{ display: "none" }}
-           
             />
           </ClientOnly>
 

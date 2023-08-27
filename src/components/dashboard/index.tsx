@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const Dashboard = () => {
   return (
-    <div className="relative hidden pr-8  flex-col lg:flex text-sm lg:w-2/12 bg-stone text-neutral pl-12 gap-8">
+    <div className="relative hidden flex-col pr-6 lg:flex text-sm lg:w-2/12 bg-stone text-neutral lg:pl-6 xl:pl-12 gap-8">
       <div className="pr-6 pt-8 min-w-[100px]">
         <Link href='/'>
         <Image src={Logo} width={200} height={100} alt="xxx" /></Link>
@@ -59,7 +59,7 @@ const Dashboard = () => {
         </span>
       </div>
       <div id="collection" className="flex flex-col gap-3">
-        <span className="text-base">Your Collection</span>
+        <span className="text-base">Collection</span>
         <span className="flex gap-3 items-center">
           {" "}
           <Image src={dailyMixIcon} width={22}alt="xxx" />

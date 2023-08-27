@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
